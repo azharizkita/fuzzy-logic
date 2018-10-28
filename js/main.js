@@ -30,7 +30,7 @@ function cek(a, b, c) {
 }
 
 // program utama
-$.get('data.txt', function(textData) {
+$.get('DataTugas2.txt', function(textData) {
 
     // data.txt dipecah, setiap new line adalah array baru
     rawData = textData.split('\n');
@@ -128,7 +128,7 @@ $.get('data.txt', function(textData) {
     // parsing 20 data teratas array of object menjadi dump CSV 
     csvDump = formatCSV(finalData.slice(0, 20));
     // export dump CSV menjadi file .csv
-    // exportCSV(csvDump);
+    exportCSV(csvDump);
     
     console.log("Top 20 keluarga yang layak menerima BLT:");
     console.table(finalData.slice(0, 20));
