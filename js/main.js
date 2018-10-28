@@ -30,14 +30,18 @@ function cek(a, b, c) {
 }
 
 // program utama
-$.get('DataTugas2.txt', function(textData) {
+$.get('DataTugas2.csv', function(textData) {
 
     // data.txt dipecah, setiap new line adalah array baru
     rawData = textData.split('\n');
+
+    /* karena array pertama dan terakhir berisis header dan array kosong, 
+    slice array antara array kedua dari depan sampai kedua dari belakang */
+    rawData = rawData.slice(1, rawData.length - 1);
     
     // melakukan perulangan sebanyak panjang dari array rawData
     for (let index = 0; index < rawData.length; index++) {
-        data = rawData[index].split('\t').map(parseFloat);
+        data = rawData[index].split(',').map(parseFloat);
 
         // inisiasi pendapatan
         pr = 0; // rendah
@@ -129,7 +133,8 @@ $.get('DataTugas2.txt', function(textData) {
     csvDump = formatCSV(finalData.slice(0, 20));
     // export dump CSV menjadi file .csv
     exportCSV(csvDump);
-    
+
+    // tampilan table info pada console
     console.log("Top 20 keluarga yang layak menerima BLT:");
     console.table(finalData.slice(0, 20));
     console.log("Detail data:");
