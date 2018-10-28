@@ -9,7 +9,7 @@ function turun(min, max, nilai) {
 function cekPendapatan(data) {
     if (0 <= data && data <= 0.5) {
         pr = 1;
-    } else if (0.5 < data && data < 1) {
+    } else if (0.5 < data && data <= 1) {
         pr = turun(0.5, 1, data);
         ps = naik(0.5, 1, data);
     } else if (1 < data && data <= 1.5) {
@@ -36,35 +36,35 @@ function cekHutang(data) {
 
 function cekKelayakan(pr, ps, pt, hr, hs, ht) {
     if (pr >0 && hr > 0) {
-        l = cek(pr, hr, l);
+        l = inference(pr, hr, l);
     }
     if (ps > 0 && hr > 0) {
-        tl = cek(ps, hr, tl);
+        tl = inference(ps, hr, tl);
     }
     if (pt > 0 && hr > 0) {
-        tl = cek(pt, hr, tl);
+        tl = inference(pt, hr, tl);
     }
     if (pr > 0 && hs > 0) {
-        l = cek(pr, hs, l);
+        l = inference(pr, hs, l);
     }
     if (ps > 0 && hs > 0) {
-        l = cek(ps, hs, l);
+        l = inference(ps, hs, l);
     }
     if (pt > 0 && hs > 0) {
-        tl = cek(pt, hs, tl);
+        tl = inference(pt, hs, tl);
     }
     if (pr > 0 && ht > 0) {
-        l = cek(pr, ht, l);
+        l = inference(pr, ht, l);
     }
     if (ps > 0 && ht > 0) {
-        l = cek(ps, ht, l);
+        l = inference(ps, ht, l);
     }
     if (pt > 0 && ht > 0) {
-        l = cek(pt, ht, l);
+        l = inference(pt, ht, l);
     }
 }
 
-function cek(a, b, c) {
+function inference(a, b, c) {
     if (a<=b) {
         if (a>=c) {
             return a;
@@ -81,7 +81,7 @@ function cek(a, b, c) {
 }
 
 function deffuzificate(a,b) {
-    return ((a*60) + (b*30) / (a + b))
+    return ((a*70) + (b*40) / (a + b))
 }
 
 function sort(dataSort) {

@@ -14,12 +14,13 @@ $.get('DataTugas2.csv', function(textData) {
         hr = 0; hs = 0; ht = 0;
         // inisiasi kelayakan
         l = 0; tl = 0;
-        // cek kategori pendapatan
+        // fuzzyfication, cek kategori pendapatan
         cekPendapatan(data[1]);
-        // cek kategori hutang
+        // fuzzyfiication, cek kategori hutang
         cekHutang(data[2]);
-        // cek kelayakan
+        // inference, cek kelayakan
         cekKelayakan(pr, ps, pt, hr, hs, ht);
+        // deffuzification
         let score = deffuzificate(l,tl);
         // data disimpan dalam array of object
         dataEval[index] = {
